@@ -20,27 +20,20 @@ class PhotoSwitcher private constructor(private val mActivity: Activity) {
         init()
     }
 
-    fun setCount(count: Int): PhotoSwitcher {
-        selector!!.count(count)
-        return this
-    }
-
     private fun init() {
         selector = MultiImageSelector.create(mActivity)
                 .showCamera(true)?.count(9)?.multi()
+    }
+
+    fun setCount(count: Int): PhotoSwitcher {
+        selector!!.count(count)
+        return this
     }
 
     fun getPhoto(RequestCode: Int) {
         selector!!.start(mActivity, RequestCode)
     }
 
-    fun patchsToBitmaps(patches: List<String>): List<Bitmap> {
-        val bitmaps = ArrayList<Bitmap>()
-        for (patch in patches) {
-            decodeFile(patch)?.let { bitmaps.add(it) }
-        }
-        return bitmaps
-    }
 
     companion object {
         fun dealWith(requestCode: Int, resultCode: Int, data: Intent?, yourCode: Int, resultListener: PhotoResultListener) {
@@ -57,7 +50,13 @@ class PhotoSwitcher private constructor(private val mActivity: Activity) {
             return PhotoSwitcher(activity)
         }
 
-        fun decodeFile(path: String): Bitmap? {
+        fun patchsToBitmaps(patches: List<String>): List<Bitmap?> {
+            return patches.map {
+                decodeFile(it)
+            }
+        }
+
+        private fun decodeFile(path: String): Bitmap? {
             var b: Bitmap? = null
             val f = File(path)
             // Decode image size
