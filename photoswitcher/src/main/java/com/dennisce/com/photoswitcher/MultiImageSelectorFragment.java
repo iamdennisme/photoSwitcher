@@ -189,9 +189,9 @@ public class MultiImageSelectorFragment extends Fragment {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (scrollState == SCROLL_STATE_FLING) {
-                    Picasso.get().pauseTag(TAG);
+                    Picasso.with(getContext()).pauseTag(TAG);
                 } else {
-                    Picasso.get().resumeTag(TAG);
+                    Picasso.with(getContext()).resumeTag(TAG);
                 }
             }
 

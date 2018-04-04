@@ -93,7 +93,7 @@ class FolderAdapter(private val mContext: Context) : BaseAdapter() {
                     totalImageSize, mContext.resources.getString(R.string.mis_photo_unit))
             if (mFolders!!.size > 0) {
                 val f = mFolders!![0]
-                Picasso.get()
+                Picasso.with(mContext)
                         .load(File(f.cover!!.path))
                         .error(R.drawable.mis_default_error)
                         .resizeDimen(R.dimen.mis_folder_cover_size, R.dimen.mis_folder_cover_size)
@@ -136,7 +136,7 @@ class FolderAdapter(private val mContext: Context) : BaseAdapter() {
             }
             if (data.cover != null) {
                 // 显示图片
-                Picasso.get()
+                Picasso.with(mContext)
                         .load(File(data.cover!!.path))
                         .placeholder(R.drawable.mis_default_error)
                         .resizeDimen(R.dimen.mis_folder_cover_size, R.dimen.mis_folder_cover_size)

@@ -187,7 +187,7 @@ class ImageGridAdapter(private val mContext: Context, showCamera: Boolean, colum
             val imageFile = File(data.path)
             if (imageFile.exists()) {
                 // 显示图片
-                Picasso.get()
+                Picasso.with(mContext)
                         .load(imageFile)
                         .placeholder(R.drawable.mis_default_error)
                         .tag(MultiImageSelectorFragment.TAG)
