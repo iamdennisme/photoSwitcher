@@ -1,12 +1,9 @@
 package com.dennisce.com.photoswitcher.utils
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.hardware.Camera
 import android.os.Build
-import pub.devrel.easypermissions.EasyPermissions
-
 /**
  * Created by dennis on 17/10/2017.
  * so.....
@@ -32,9 +29,9 @@ class CameraPermissionUtil {
                 }
                 return canUse
             } else {
-                return EasyPermissions.hasPermissions(context, Manifest.permission.READ_EXTERNAL_STORAGE,
+                return PermissionsUtil.checkPermissions(context, listOf(Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.CAMERA)
+                        Manifest.permission.CAMERA)).isEmpty()
             }
         }
     }
