@@ -20,8 +20,6 @@ android {
         release {
             //zip对齐
             zipAlignEnabled true
-            //代码混淆
-            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
